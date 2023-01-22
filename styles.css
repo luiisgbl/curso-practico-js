@@ -16,6 +16,13 @@
 .inactive{
   display: none;
 }
+.overlog{
+  background-color: #00000095;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
 
 /* Nav General */
 
@@ -164,15 +171,16 @@ nav {
 
 
     /* Carrito de compra */
-    .product-detail {
+    aside {
       background-color: var(--white);
       width: 360px;
       padding: 0 24px;
       box-sizing: border-box;
       position: absolute;
+    }
+  
+    #shoppingCardDetalis{
       right: 0;
-    
-      
     }
     .title-container {
       display: flex;
@@ -249,46 +257,123 @@ nav {
       font-weight: bold;
       height: 50px;
     }
+    
 
+    /* product-detail */
 
-    /* Lista de productos */
-
-    .cards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 240px);
-      gap: 26px;
-      place-content: center;
-      margin-top: 30px;
+    #product-detail{
+      border-radius: 5%;
+      padding: 15px;
+      margin: 20px;
+      position:absolute;
+      top: 46%;
+      left: 46%;
+      transform: translate(-46%, -46%);
+      z-index: 11;
     }
-    .product-card {
-      width: 240px;
+  
+    .product-detail-close {
+      background: var(--white);
+      width: 4px;
+      height: 4px;
+      position: absolute;
+      top: 24px;
+      right: 34px;
+      z-index: 2;
+      padding: 12px;
+      border-radius: 70%;
     }
-    .product-card img {
-      width: 240px;
-      height: 240px;
-      border-radius: 20px;
+    .product-detail-close img{
+      position: absolute;
+      left: 0px;
+      top: 0px
+    }
+
+    .product-detail-close:hover {
+      cursor: pointer;
+    }
+    #product-detail > img:nth-child(2) {
+      width: 100%;
+      height: 360px;
       object-fit: cover;
+      border-radius: 0 0 20px 20px;
+      border-radius: 15px;
     }
-    .product-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 12px;
+    #product-detail .product-info {
+      margin: 24px 24px 0 24px;
     }
-    .product-info figure {
-      margin: 0;
-    }
-    .product-info figure img {
-      width: 35px;
-      height: 35px;
-    }
-    .product-info div p:nth-child(1) {
+    #product-detail .product-info p:nth-child(1) {
       font-weight: bold;
       font-size: var(--md);
       margin-top: 0;
       margin-bottom: 4px;
     }
-    .product-info div p:nth-child(2) {
+    #product-detail .product-info p:nth-child(2) {
+      color: var(--very-light-pink);
+      font-size: var(--md);
+      margin-top: 0;
+      margin-bottom: 36px;
+    }
+    #product-detail .product-info p:nth-child(3) {
+      color: var(--very-light-pink);
+      font-size: var(--sm);
+      margin-top: 0;
+      margin-bottom: 36px;
+    }
+    #product-detail .primary-button {
+      background-color: var(--hospital-green);
+      border-radius: 8px;
+      border: none;
+      color: var(--white);
+      width: 100%;
+      cursor: pointer;
+      font-size: var(--md);
+      font-weight: bold;
+      height: 50px;
+    }
+    #product-detail .add-to-cart-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Lista de productos */
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 250px);
+      gap: 30px;
+      place-content: center;
+      margin-top: 30px;
+    }
+    .cards-container .product-card {
+      width: 240px;
+    }
+    .cards-container .product-card img {
+      width: 240px;
+      height: 240px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+    .cards-container .product-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+    .cards-container .product-info figure {
+      margin: 0;
+    }
+    .cards-container .product-info figure img {
+      width: 35px;
+      height: 35px;
+    }
+    .cards-container .product-info div p:nth-child(1) {
+      font-weight: bold;
+      font-size: var(--md);
+      margin-top: 0;
+      margin-bottom: 4px;
+    }
+    .cards-container .product-info div p:nth-child(2) {
       font-size: var(--sm);
       margin-top: 0;
       margin-bottom: 0;

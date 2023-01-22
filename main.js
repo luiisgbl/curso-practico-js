@@ -1,37 +1,57 @@
+// selectores de email 
 const navEmail = document.querySelector('.navbar-email');
 const desktopMenu = document.querySelector('.desktop-menu');
 
+// selectores de menu mobile
 const burguerNav = document.querySelector('.menu');
 const menuBurguer = document.querySelector('.mobile-menu');
 
-
+// selectores de la targeta de detalle de productos
 const menuCarritoIcon = document.querySelector('.navbar-shopping-cart');
-const aside = document.querySelector('.product-detail');
+const shoppingCardContainer = document.querySelector('#shoppingCardDetalis');
 
+// selectores de la lista de productos
 const cardsContainer = document.querySelector('.cards-container');
 
+// selectores del produc detail
+const productDetail = document.querySelector('#product-detail');
+const closeProductDetail = document.querySelector('#closeProducDetail');
+const overlog = document.querySelector('.overlog');
 
+const productDetailImg = document.querySelector('#productDetailImg');
+const productDetailPrice = document.querySelector('#productDetailPrice');
+const productDetailName = document.querySelector('#productDetailName');
+const productDetailDescription = document.querySelector('#productDetailDescription');
+
+// funciones
 navEmail.addEventListener('click', toggleDesktopMenu);
 burguerNav.addEventListener('click', toggleMobileMenu);
 menuCarritoIcon.addEventListener('click', carritos);
 
+closeProductDetail.addEventListener('click', funCloseProductDetail);
+
 
 function toggleDesktopMenu(){
-    const asideClosed = aside.classList.contains('inactive');
+    const shoppingCardContainerClosed = shoppingCardContainer.classList.contains('inactive');
 
-    if(!asideClosed){
-    aside.classList.add('inactive');
+    if(!shoppingCardContainerClosed){
+    shoppingCardContainer.classList.add('inactive');
     };
     desktopMenu.classList.toggle('inactive');
 }
 
 function toggleMobileMenu(){
-    const asideClosed = aside.classList.contains('inactive');
+    const shoppingCardContainerClosed = shoppingCardContainer.classList.contains('inactive');
 
-    if(!asideClosed){
-    aside.classList.add('inactive');
+    if(!shoppingCardContainerClosed){
+    shoppingCardContainer.classList.add('inactive');
     };
     menuBurguer.classList.toggle('inactive');
+}
+
+function funCloseProductDetail(){
+    overlog.classList.add('inactive');
+    productDetail.classList.add('inactive');
 }
 
 function carritos (){
@@ -46,28 +66,57 @@ function carritos (){
         menuBurguer.classList.add('inactive');
     }
     
-    aside.classList.toggle('inactive')
+    shoppingCardContainer.classList.toggle('inactive')
 }
 
+function openProductDetailAside(){
+    shoppingCardContainer.classList.add('inactive')
+    desktopMenu.classList.add('inactive');
+    menuBurguer.classList.add('inactive');
+    desktopMenu.classList.add('inactive');
+    productDetail.classList.remove('inactive');
+    overlog.classList.remove('inactive');
+
+//event.target.src => Al hacer clic en la imagen, obtenemos su atributo src.
+    productDetailImg.setAttribute("src", event.target.src);
+//event.target.nextElementSibling.innerText =>  Al hacer click en la imagen, devuelve el siguiente elemento en el mismo nivel del árbol.
+    productDetailPrice.innerText = event.target.nextElementSibling.innerText;
+   
+};
 
 
-//lista de productos
+// agregando listas de productos lista de productos
 
 const productList = [];
 productList.push({
     name: "Bicicleta",
     price: 220,
-    img: "https://w7.pngwing.com/pngs/998/319/png-transparent-electric-bicycle-focus-bikes-mountain-bike-cycling-focus-bicycle-frame-bicycle-hybrid-bicycle-thumbnail.png"
+    img: "https://falabella.scene7.com/is/image/Falabella/881948375_1?wid=800&hei=800&qlt=70"
 });
 productList.push({
     name: "Moto",
     price: 600,
-    img: "https://e7.pngegg.com/pngimages/323/379/png-clipart-motorcycle-motorcycle.png"
+    img: "https://ripleycl.imgix.net/https%3A%2F%2Fs3.amazonaws.com%2Fimagenes-sellers-mercado-ripley%2F2021%2F11%2F15114751%2Fka-150-naranjo.jpeg?w=750&h=555&ch=Width&auto=format&cs=strip&bg=FFFFFF&q=60&trimcolor=FFFFFF&trim=color&fit=fillmax&ixlib=js-1.1.0&s=ce25caa524cde7be40642905e216f9ed"
 });
 productList.push({  
     name: "Auto",
     price: 1600,
-    img: "https://img2.freepng.es/20180705/av/kisspng-2018-nissan-maxima-3-5-s-sedan-car-2018-nissan-max-chevrolet-cruze-5b3eb7df2c2267.5060655515308369591808.jpg"
+    img: "https://catalogo.gac-sa.cl/assets/matriz/MG/MGN00041/fotos/portada/foto1.jpg"
+});
+productList.push({  
+    name: "Auto",
+    price: 2600,
+    img: "https://static.retail.autofact.cl/blog/c_img_740x370.rpbbp8kyezf0rd.jpg"
+});
+productList.push({  
+    name: "Auto",
+    price: 1600,
+    img: "https://media.revistagq.com/photos/5ca5e602944b834654eb8fe6/master/pass/los_10_coches_mas_caros_del_mundo_131086603.jpg"
+});
+productList.push({  
+    name: "Auto",
+    price: 1600,
+    img: "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/NNC7TA7K2NG5HM2REZSAE244XE.jpg"
 });
 
 
@@ -84,6 +133,7 @@ function listaDeProductos(arr){
     const productImg = document.createElement('img');
     //Se le agrega el atributo src con la imagen que tiene el alrrays 
     productImg.setAttribute('src', product.img);
+    productImg.addEventListener('click', openProductDetailAside);
 
     const productInfo = document.createElement('div');
     productInfo.classList.add('product-info');
@@ -94,7 +144,7 @@ function listaDeProductos(arr){
 
     const productPrice = document.createElement('p');
     productPrice.innerText = product.price + ' $';
-
+    productDetailPrice.innerHTML = product.price + ' $';
 
     const productName = document.createElement('p');
     productName.innerText = product.name;
